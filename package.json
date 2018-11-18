@@ -1,13 +1,13 @@
 {
   "name": "najs-eloquent-mongoose",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "scripts": {
     "build": "npm run build-ts && npm run tslint",
     "build-ts": "tsc -d",
     "coverage": "npm run build && jest ./dist/test/**/*.js ./dist/test/**/**/*.js ./dist/test/**/**/**/*.js --coverage --forceExit",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "prepublishOnly": "tsc -d -p ./ --outDir dist",
-    "test": "npm run coverage && npm run integration"
+    "test": "npm run coverage"
   },
   "jest": {
     "globals": {
