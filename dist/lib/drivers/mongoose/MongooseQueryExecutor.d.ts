@@ -1,0 +1,30 @@
+import { Model as MongooseModel, Query as MongooseQuery } from 'mongoose';
+import { NajsEloquent as NajsEloquentLib } from 'najs-eloquent';
+import { MongooseQueryLog } from './MongooseQueryLog';
+import { MongooseQueryBuilderHandler } from './MongooseQueryBuilderHandler';
+export declare class MongooseQueryExecutor extends NajsEloquentLib.Driver.ExecutorBase implements NajsEloquent.QueryBuilder.IQueryExecutor {
+    protected logger: MongooseQueryLog;
+    protected mongooseModel: MongooseModel<any>;
+    protected mongooseQuery: MongooseQuery<any> | undefined;
+    protected hasMongooseQuery: boolean;
+    protected modelName: string;
+    protected basicQuery: NajsEloquentLib.QueryBuilder.Shared.BasicQuery;
+    protected queryHandler: MongooseQueryBuilderHandler;
+    protected nativeHandlePromise: any;
+    constructor(queryHandler: MongooseQueryBuilderHandler, mongooseModel: MongooseModel<any>, logger: MongooseQueryLog);
+    get(): Promise<object[]>;
+    first(): Promise<object | null>;
+    count(): Promise<number>;
+    update(data: Object): Promise<any>;
+    delete(): Promise<any>;
+    restore(): Promise<any>;
+    execute(): Promise<any>;
+    native(handler: (native: MongooseQuery<any>) => MongooseQuery<any>): this;
+    getMongooseModel(): MongooseModel<any>;
+    getQueryConditions(): object;
+    getMongooseQuery(isFindOne: boolean): MongooseQuery<any>;
+    passSelectToQuery(query: MongooseQuery<any>): void;
+    passLimitToQuery(query: MongooseQuery<any>): void;
+    passOrderingToQuery(query: MongooseQuery<any>): void;
+    createQuery(findOne: boolean): MongooseQuery<any>;
+}
